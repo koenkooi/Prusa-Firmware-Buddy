@@ -125,6 +125,21 @@ void GcodeSuite::M26() {
     }
 }
 
+#if ENABLED(SDSUPPORT) || ENABLED(SDCARD_GCODES)
+uint32_t M27_handler::sd_auto_report_delay = 0;
+
+void M27_handler::print_sd_status() {
+    if (marlin_server::is_printing_state(marlin_vars().print_state.get())) {
+        SERIAL_ECHOPGM(MSG_SD_PRINTING_BYTE);
+        SERIAL_ECHO(marlin_vars().media_position.get());
+        SERIAL_CHAR('/');
+        SERIAL_ECHOLN(marlin_vars().media_size_estimate.get());
+    } else {
+        SERIAL_ECHOLNPGM(MSG_SD_NOT_PRINTING);
+    }
+}
+#endif
+
 /**
  *### M27 - Report SD print status on serial port <a href="https://reprap.org/wiki/G-code#M27:_Report_SD_print_status">M27: Report SD print status</a>
  *
@@ -141,15 +156,14 @@ void GcodeSuite::M27() {
     if (parser.seen('C')) {
         SERIAL_ECHOPGM("Current file: ");
         SERIAL_ECHOLN(marlin_vars().media_SFN_path.get_ptr());
-
-    } else if (marlin_server::is_printing_state(marlin_vars().print_state.get())) {
-        SERIAL_ECHOPGM(MSG_SD_PRINTING_BYTE);
-        SERIAL_ECHO(marlin_vars().media_position.get());
-        SERIAL_CHAR('/');
-        SERIAL_ECHOLN(marlin_vars().media_size_estimate.get());
-    } else {
-        SERIAL_ECHOLNPGM(MSG_SD_NOT_PRINTING);
     }
+#if ENABLED(SDSUPPORT) || ENABLED(SDCARD_GCODES)
+    else if (parser.seen('S')) {
+        M27_handler::sd_auto_report_delay = parser.byteval('S');
+    } else {
+        M27_handler::print_sd_status();
+    }
+#endif
 }
 
 /**
