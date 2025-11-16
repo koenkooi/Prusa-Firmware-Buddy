@@ -93,7 +93,13 @@ inline constexpr uint8_t FANCTLPRINT_MIN_PWM_TO_MEASURE_RPM =
 
 // FANCTLHEATBREAK - heatbreak fan
 inline constexpr uint8_t FANCTLHEATBREAK_PWM_MIN = 0;
-inline constexpr uint8_t FANCTLHEATBREAK_PWM_MAX = 50;
+inline constexpr uint8_t FANCTLHEATBREAK_PWM_MAX = 
+#if PRINTER_IS_PRUSA_MINI()
+    100
+#else
+    50
+#endif
+    ;
 inline constexpr uint16_t FANCTLHEATBREAK_RPM_MIN = 1000;
 inline constexpr uint16_t FANCTLHEATBREAK_RPM_MAX =
 #if (PRINTER_IS_PRUSA_MK4() || PRINTER_IS_PRUSA_MK3_5() || PRINTER_IS_PRUSA_iX() || PRINTER_IS_PRUSA_XL() || PRINTER_IS_PRUSA_COREONE() || PRINTER_IS_PRUSA_COREONEL())
