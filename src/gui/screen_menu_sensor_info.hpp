@@ -48,15 +48,6 @@ struct ScreenMenuSensorInfo__<std::index_sequence<hotend...>> {
     using T = ScreenMenu<GuiDefaults::MenuFooter,
         MI_RETURN,
 
-#if PRINTER_IS_PRUSA_MINI()
-        // Take very minimalist approach for the Mini, we're low on FLASH right now :(
-        // TODO: Remove this
-        MI_INFO_PRINTER_FILL_SENSOR,
-        MI_MINDA,
-        MI_INFO_MCU_TEMP
-
-#else
-
     #if HAS_TEMP_BOARD
         MI_INFO_BOARD_TEMP,
     #endif
@@ -110,7 +101,6 @@ struct ScreenMenuSensorInfo__<std::index_sequence<hotend...>> {
         MI_INFO_MMU_CURRENT,
     #endif
         MI_FAN_INFO
-#endif
         >;
 };
 
