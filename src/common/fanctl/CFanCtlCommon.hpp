@@ -97,7 +97,7 @@ inline constexpr uint8_t FANCTLHEATBREAK_PWM_MAX =
 #if PRINTER_IS_PRUSA_MINI()
     100
 #else
-    50
+    60
 #endif
     ;
 inline constexpr uint16_t FANCTLHEATBREAK_RPM_MIN = 1000;
