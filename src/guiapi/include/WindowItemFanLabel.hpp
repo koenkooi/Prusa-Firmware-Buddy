@@ -29,7 +29,7 @@ private:
 
         const char *const format = //
             !val.rpm.has_value()      ? N_("%u %% / unknown")
-            : val.rpm.value_or(0) > 0 ? N_("%u %% / %li RPM")
+            : val.rpm.value_or(0) > 0 ? N_("%u%%/%li RPM")
             : val.pwm                 ? N_("%u %% / stuck")
                                       : N_("%u %% / stopped");
 
