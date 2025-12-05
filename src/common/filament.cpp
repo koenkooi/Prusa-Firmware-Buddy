@@ -52,7 +52,7 @@ constexpr EnumArray<PresetFilamentType, FilamentTypeParameters, PresetFilamentTy
         PresetFilamentType::PLA,
         {
             .name = FilamentTypeParameters::name_from_str("PLA"),
-            .nozzle_temperature = 215,
+            .nozzle_temperature = 220,
             .heatbed_temperature = 60,
 #if HAS_FILAMENT_HEATBREAK_PARAM()
             .heatbreak_temperature = 45,
@@ -68,7 +68,7 @@ constexpr EnumArray<PresetFilamentType, FilamentTypeParameters, PresetFilamentTy
         PresetFilamentType::PETG,
         {
             .name = FilamentTypeParameters::name_from_str("PETG"),
-            .nozzle_temperature = 230,
+            .nozzle_temperature = 235,
             .heatbed_temperature = 85,
 #if HAS_FILAMENT_HEATBREAK_PARAM()
             .heatbreak_temperature = 60,
