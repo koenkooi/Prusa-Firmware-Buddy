@@ -481,7 +481,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
 #define DEFAULT_MAX_FEEDRATE \
-    { 180, 180, 12, 80 }
+    { 400, 400, 12, 80 }
 
 /// HW limits of feed rate
 #define HWLIMIT_NORMAL_MAX_FEEDRATE \
