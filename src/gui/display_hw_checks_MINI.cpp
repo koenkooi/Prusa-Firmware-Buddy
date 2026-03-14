@@ -8,11 +8,11 @@
 
 namespace {
 void reinit_lcd_and_redraw() {
-    display::complete_reinit();
-    display::init();
-    if (auto *screen = Screens::Access()->Get()) {
-        screen->Invalidate();
-    }
+//    display::complete_reinit();
+//    display::init();
+//    if (auto *screen = Screens::Access()->Get()) {
+//        screen->Invalidate();
+//    }
 }
 
 void check_lcd() {
@@ -23,7 +23,7 @@ void check_lcd() {
 } // anonymous namespace
 
 void lcd::communication_check() {
-    const uint32_t min_check_period_ms = 2048;
+    const uint32_t min_check_period_ms = 204800;
     static uint32_t last_touch_check_ms = ticks_ms();
 
     uint32_t now = ticks_ms();
